@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://images/menu/Background.png" type="Texture" id=1]
+[ext_resource path="res://images/menu/buttons/play.png" type="Texture" id=2]
+[ext_resource path="res://images/menu/MusicAndSoundEffects.png" type="Texture" id=3]
+[ext_resource path="res://images/menu/buttons/exit.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=5]
+[ext_resource path="res://images/menu/MusicOff.png" type="Texture" id=6]
+[ext_resource path="res://images/menu/SoundOff.png" type="Texture" id=7]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Play" type="Sprite" parent="."]
+position = Vector2( 24, 174 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Exit" type="Sprite" parent="."]
+position = Vector2( 24, 198 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="MusicAndSoundEffects" type="Sprite" parent="."]
+position = Vector2( 240, 174 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="MusicOff" type="Sprite" parent="."]
+visible = false
+position = Vector2( 296, 172 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="SoundOff" type="Sprite" parent="."]
+visible = false
+position = Vector2( 293, 185 )
+texture = ExtResource( 7 )
+centered = false

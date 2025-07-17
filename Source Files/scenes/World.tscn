@@ -1,0 +1,330 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/tiles/Floor.png" type="Texture" id=2]
+[ext_resource path="res://scripts/World.gd" type="Script" id=3]
+[ext_resource path="res://images/tiles/FloorDetail.png" type="Texture" id=4]
+[ext_resource path="res://images/ui/Background.png" type="Texture" id=5]
+[ext_resource path="res://images/ui/guns/Smg.png" type="Texture" id=6]
+[ext_resource path="res://scripts/UI.gd" type="Script" id=7]
+[ext_resource path="res://images/ui/background-inv.png" type="Texture" id=8]
+[ext_resource path="res://images/ui/guns/Pistol.png" type="Texture" id=9]
+[ext_resource path="res://images/ui/q/Freeze.png" type="Texture" id=10]
+[ext_resource path="res://images/ui/q/Teleport.png" type="Texture" id=11]
+[ext_resource path="res://images/ui/q/Invulnerability.png" type="Texture" id=12]
+[ext_resource path="res://images/ui/e/Speed.png" type="Texture" id=13]
+[ext_resource path="res://images/ui/e/Damage.png" type="Texture" id=14]
+[ext_resource path="res://images/ui/e/Heal.png" type="Texture" id=15]
+[ext_resource path="res://images/ui/guns/shotgun.png" type="Texture" id=16]
+[ext_resource path="res://images/ui/background-stats.png" type="Texture" id=17]
+[ext_resource path="res://images/ui/statsKills.png" type="Texture" id=18]
+[ext_resource path="res://images/ui/statsEnemiesOnScreen.png" type="Texture" id=19]
+
+[sub_resource type="TileSet" id=1]
+0/name = "Floor.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 8, 8 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "FloorDetail.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 8, 8 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 68, 5 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 68, 0, 68, 5 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 33, 5 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 17 )
+region = Rect2( 33, 0, 33, 5 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 176, 118 )
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
+
+[node name="Dark" type="ColorRect" parent="UI"]
+margin_right = 320.0
+margin_bottom = 192.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="UI"]
+margin_top = 191.659
+margin_right = 320.0
+margin_bottom = 239.659
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="ColorRect" parent="UI"]
+margin_left = 101.0
+margin_top = 206.0
+margin_right = 121.0
+margin_bottom = 226.0
+color = Color( 0.454902, 0.682353, 0.592157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaveNumbers" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillsNumbers" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemiesOnScreen" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Guns" type="Control" parent="UI"]
+anchor_left = 0.619
+anchor_top = 0.858
+anchor_right = 0.619
+anchor_bottom = 0.858
+margin_left = -0.0800018
+margin_top = 0.0799866
+margin_right = 43.92
+margin_bottom = 20.08
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Smg" type="TextureRect" parent="UI/Guns"]
+visible = false
+margin_right = 44.0
+margin_bottom = 20.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pistol" type="TextureRect" parent="UI/Guns"]
+visible = false
+margin_right = 44.0
+margin_bottom = 20.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shotgun" type="TextureRect" parent="UI/Guns"]
+margin_right = 44.0
+margin_bottom = 20.0
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Q" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Freeze" type="TextureRect" parent="UI/Q"]
+margin_left = 133.0
+margin_top = 206.0
+margin_right = 153.0
+margin_bottom = 226.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Teleport" type="TextureRect" parent="UI/Q"]
+visible = false
+margin_left = 133.0
+margin_top = 206.0
+margin_right = 153.0
+margin_bottom = 226.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Invulnerability" type="TextureRect" parent="UI/Q"]
+visible = false
+margin_left = 133.0
+margin_top = 206.0
+margin_right = 153.0
+margin_bottom = 226.0
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cooldown" type="ColorRect" parent="UI/Q"]
+margin_left = 133.0
+margin_top = 206.0
+margin_right = 153.0
+margin_bottom = 226.0
+color = Color( 1, 1, 1, 0.470588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="TextureRect" parent="UI/E"]
+margin_left = 166.0
+margin_top = 206.0
+margin_right = 186.0
+margin_bottom = 226.0
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Damage" type="TextureRect" parent="UI/E"]
+visible = false
+margin_left = 166.0
+margin_top = 206.0
+margin_right = 186.0
+margin_bottom = 226.0
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heal" type="TextureRect" parent="UI/E"]
+visible = false
+margin_left = 166.0
+margin_top = 206.0
+margin_right = 186.0
+margin_bottom = 226.0
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cooldown" type="ColorRect" parent="UI/E"]
+margin_left = 166.0
+margin_top = 206.0
+margin_right = 186.0
+margin_bottom = 226.0
+color = Color( 1, 1, 1, 0.470588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InvincibleText" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 55, 225 )
+frames = SubResource( 4 )
+frame = 1
+
+[node name="StatsText" type="AnimatedSprite" parent="UI"]
+position = Vector2( 37, 215 )
+frames = SubResource( 7 )
+
+[node name="I letter cover" type="ColorRect" parent="UI"]
+margin_left = 10.6497
+margin_top = 220.634
+margin_right = 18.6497
+margin_bottom = 228.634
+color = Color( 0.27451, 0.294118, 0.337255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="kills" type="TextureRect" parent="UI"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 52.0
+margin_bottom = 21.0
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="enemiesOnScreen" type="TextureRect" parent="UI"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 29.0
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
